@@ -5,32 +5,67 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>¿Quieres ser mi Valentín? ❤️</title>
     <style>
-        body { background-color: #ffdde1; display: flex; align-items: center; justify-content: center; height: 100vh; margin: 0; font-family: 'Arial', sans-serif; overflow: hidden; }
-        .container { background: white; padding: 25px; border-radius: 20px; box-shadow: 0 10px 20px rgba(0,0,0,0.1); text-align: center; width: 85%; max-width: 350px; position: relative; }
-        h1 { color: #d63384; font-size: 22px; margin-bottom: 20px; }
+        body { background-color: #ffdde1; display: flex; align-items: center; justify-content: center; min-height: 100vh; margin: 0; font-family: 'Arial', sans-serif; overflow-x: hidden; }
+        .container { background: white; padding: 20px; border-radius: 20px; box-shadow: 0 10px 20px rgba(0,0,0,0.1); text-align: center; width: 90%; max-width: 450px; position: relative; margin: 20px; }
+        
+        /* Sección de Fotos (Oculta al inicio) */
+        #fotos-recuerdo { display: none; }
+        .grid-fotos { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-top: 15px; }
+        .grid-fotos img { width: 100%; height: 150px; object-fit: cover; border-radius: 10px; border: 2px solid #ff4d6d; }
+        
+        h1 { color: #d63384; font-size: 22px; }
+        p { color: #555; }
         .btns { margin-top: 20px; display: flex; justify-content: center; gap: 15px; height: 60px; position: relative; }
         button { padding: 10px 25px; font-size: 18px; border: none; border-radius: 12px; cursor: pointer; font-weight: bold; }
-        #btn-si { background-color: #ff4d6d; color: white; }
+        #btn-si { background-color: #ff4d6d; color: white; z-index: 10; }
         #btn-no { background-color: #888; color: white; position: absolute; transition: 0.1s; z-index: 1000; }
-        img { width: 140px; margin-bottom: 10px; }
+        #gif-inicial { width: 120px; }
     </style>
 </head>
 <body>
-    <div class="container">
-        <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHp6eXN2bmZ4ZzR6eXN2bmZ4ZzR6eXN2bmZ4ZzR6eXN2bmZ4ZyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/cLS1cfxvGOPVpf9g3y/giphy.gif">
-        <h1>¿Quieres ser mi Valentín? 🌹</h1>
-        <div class="btns">
-            <button id="btn-si">¡SÍ! 😍</button>
-            <button id="btn-no">No 😢</button>
+
+    <div class="container" id="main-container">
+        <div id="pantalla-pregunta">
+            <img id="gif-inicial" src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHp6eXN2bmZ4ZzR6eXN2bmZ4ZzR6eXN2bmZ4ZzR6eXN2bmZ4ZyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/cLS1cfxvGOPVpf9g3y/giphy.gif">
+            <h1>¿Quieres ser mi Valentín? 🌹</h1>
+            <div class="btns">
+                <button id="btn-si">¡SÍ! 😍</button>
+                <button id="btn-no">No 😢</button>
+            </div>
+        </div>
+
+        <div id="fotos-recuerdo">
+            <h1>¡Siiiii! ❤️</h1>
+            <p>Gracias por ser parte de mi vida...</p>
+            <div class="grid-fotos">
+                <img src="https://i.postimg.cc/F7jzqJ60/Whats-App-Image-2026-02-12-at-11-15-43-AM.jpg">
+                <img src="https://i.postimg.cc/fjxyF0Px/Whats-App-Image-2026-02-12-at-11-15-44-AM.jpg">
+                <img src="https://i.postimg.cc/9F77TfLd/Whats-App-Image-2026-02-12-at-11-17-22-AM.jpg">
+                <img src="https://i.postimg.cc/tTfHjP0Z/Whats-App-Image-2026-02-12-at-11-17-22-AM-1.jpg">
+            </div>
+            <p style="font-size: 14px; color: #ff4d6d; margin-top: 15px; font-weight: bold;">¡Te quiero mucho! <br> Espera un momento... ✨</p>
         </div>
     </div>
+
     <script>
         const btnSi = document.getElementById('btn-si');
         const btnNo = document.getElementById('btn-no');
+        const pantallaPregunta = document.getElementById('pantalla-pregunta');
+        const pantallaFotos = document.getElementById('fotos-recuerdo');
+
         btnSi.addEventListener('click', () => {
-            // AQUÍ ESTÁ EL CAMBIO: Ya puse tu número real
-            window.location.href = "https://wa.me/525584414112?text=¡Siii!%20Acepto%20ser%20tu%20Valentín%20❤️";
+            // 1. Ocultar pregunta y mostrar fotos
+            pantallaPregunta.style.display = 'none';
+            pantallaFotos.style.display = 'block';
+
+            // 2. Esperar 5 segundos y luego abrir WhatsApp
+            setTimeout(() => {
+                const numero = "525584414112"; 
+                const mensaje = "¡Siiiii! ¡Claro que quiero ser tu Valentín! ❤️🌹";
+                window.location.href = `https://wa.me/${numero}?text=${encodeURIComponent(mensaje)}`;
+            }, 5000); 
         });
+
         function moverBoton() {
             const x = Math.random() * (window.innerWidth - btnNo.offsetWidth);
             const y = Math.random() * (window.innerHeight - btnNo.offsetHeight);
@@ -38,6 +73,7 @@
             btnNo.style.left = x + 'px';
             btnNo.style.top = y + 'px';
         }
+
         btnNo.addEventListener('mouseover', moverBoton);
         btnNo.addEventListener('touchstart', (e) => { e.preventDefault(); moverBoton(); });
     </script>
