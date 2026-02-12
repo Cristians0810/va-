@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¿Quieres ser mi Valentín? ❤️</title>
+    <style>
+        body { background-color: #ffdde1; display: flex; align-items: center; justify-content: center; height: 100vh; overflow: hidden; font-family: 'Arial', sans-serif; text-align: center; }
+        .container { background: white; padding: 30px; border-radius: 20px; shadow: 0 10px 20px rgba(0,0,0,0.1); position: relative; width: 80%; max-width: 400px; }
+        h1 { color: #d63384; font-size: 24px; }
+        .btns { margin-top: 20px; display: flex; justify-content: center; gap: 20px; }
+        button { padding: 10px 20px; font-size: 18px; border: none; border-radius: 10px; cursor: pointer; transition: 0.3s; }
+        #btn-si { background-color: #ff4d6d; color: white; }
+        #btn-no { background-color: #888; color: white; position: absolute; }
+        img { width: 150px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHp6eXN2bmZ4ZzR6eXN2bmZ4ZzR6eXN2bmZ4ZzR6eXN2bmZ4ZyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/cLS1cfxvGOPVpf9g3y/giphy.gif" alt="Osito">
+        <h1>¿Quieres ser mi Valentín? 🌹</h1>
+        <div class="btns">
+            <button id="btn-si">¡SÍ! 😍</button>
+            <button id="btn-no">No 😢</button>
+        </div>
+    </div>
+
+    <script>
+        const btnSi = document.getElementById('btn-si');
+        const btnNo = document.getElementById('btn-no');
+
+        // Función para el botón SÍ (Cambia el número aquí abajo)
+        btnSi.addEventListener('click', () => {
+            window.location.href = "https://wa.me/TU_NUMERO?text=¡Siii!%20Acepto%20ser%20tu%20Valentín%20❤️";
+        });
+
+        // Función para que el botón NO escape
+        btnNo.addEventListener('mouseover', () => {
+            const x = Math.random() * (window.innerWidth - btnNo.offsetWidth);
+            const y = Math.random() * (window.innerHeight - btnNo.offsetHeight);
+            btnNo.style.left = x + 'px';
+            btnNo.style.top = y + 'px';
+        });
+    </script>
+</body>
+</html>
