@@ -10,17 +10,16 @@
         h1 { color: #d63384; font-size: 22px; margin-bottom: 20px; }
         .btns { margin-top: 20px; display: flex; justify-content: center; gap: 15px; height: 60px; position: relative; }
         button { padding: 10px 25px; font-size: 18px; border: none; border-radius: 12px; cursor: pointer; font-weight: bold; }
-        #btn-si { background-color: #ff4d6d; color: white; transition: 0.3s; }
-        #btn-si:hover { transform: scale(1.1); background-color: #ff758f; }
+        #btn-si { background-color: #ff4d6d; color: white; }
         #btn-no { background-color: #888; color: white; position: absolute; transition: 0.1s; z-index: 1000; }
         img { width: 140px; margin-bottom: 10px; }
     </style>
 </head>
 <body>
     <div class="container" id="main-container">
-        <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHp6eXN2bmZ4ZzR6eXN2bmZ4ZzR6eXN2bmZ4ZzR6eXN2bmZ4ZyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/cLS1cfxvGOPVpf9g3y/giphy.gif" alt="Osito tierno">
+        <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHp6eXN2bmZ4ZzR6eXN2bmZ4ZzR6eXN2bmZ4ZzR6eXN2bmZ4ZyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/cLS1cfxvGOPVpf9g3y/giphy.gif">
         <h1>¿Quieres ser mi Valentín? 🌹</h1>
-        <div class="btns" id="button-area">
+        <div class="btns">
             <button id="btn-si">¡SÍ! 😍</button>
             <button id="btn-no">No 😢</button>
         </div>
@@ -30,29 +29,23 @@
         const btnSi = document.getElementById('btn-si');
         const btnNo = document.getElementById('btn-no');
 
-        // Acción al presionar SÍ
         btnSi.addEventListener('click', () => {
-            const numero = "525584414112"; // Tu número ya configurado
+            // AQUÍ YA PUSE TU NÚMERO CORRECTO:
+            const numero = "525584414112"; 
             const mensaje = "¡Siiiii! ¡Claro que quiero ser tu Valentín! ❤️🌹";
             window.location.href = `https://wa.me/${numero}?text=${encodeURIComponent(mensaje)}`;
         });
 
-        // Función para mover el botón NO
         function moverBoton() {
-            // Calcula posiciones aleatorias dentro de toda la pantalla para que sea más difícil
             const x = Math.random() * (window.innerWidth - btnNo.offsetWidth);
             const y = Math.random() * (window.innerHeight - btnNo.offsetHeight);
-            
             btnNo.style.position = 'fixed';
             btnNo.style.left = x + 'px';
             btnNo.style.top = y + 'px';
         }
 
-        // Eventos para que huya el botón
         btnNo.addEventListener('mouseover', moverBoton);
-        btnNo.addEventListener('touchstart', (e) => { 
-            e.preventDefault(); // Evita que lo toquen en celular
-            moverBoton(); 
-        });
+        btnNo.addEventListener('touchstart', (e) => { e.preventDefault(); moverBoton(); });
     </script>
-
+</body>
+</html>
