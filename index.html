@@ -16,7 +16,7 @@
     </style>
 </head>
 <body>
-    <div class="container" id="main-container">
+    <div class="container">
         <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHp6eXN2bmZ4ZzR6eXN2bmZ4ZzR6eXN2bmZ4ZzR6eXN2bmZ4ZyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/cLS1cfxvGOPVpf9g3y/giphy.gif">
         <h1>¿Quieres ser mi Valentín? 🌹</h1>
         <div class="btns">
@@ -24,18 +24,13 @@
             <button id="btn-no">No 😢</button>
         </div>
     </div>
-
     <script>
         const btnSi = document.getElementById('btn-si');
         const btnNo = document.getElementById('btn-no');
-
         btnSi.addEventListener('click', () => {
-            // AQUÍ YA PUSE TU NÚMERO CORRECTO:
-            const numero = "525584414112"; 
-            const mensaje = "¡Siiiii! ¡Claro que quiero ser tu Valentín! ❤️🌹";
-            window.location.href = `https://wa.me/${numero}?text=${encodeURIComponent(mensaje)}`;
+            // AQUÍ ESTÁ EL CAMBIO: Ya puse tu número real
+            window.location.href = "https://wa.me/525584414112?text=¡Siii!%20Acepto%20ser%20tu%20Valentín%20❤️";
         });
-
         function moverBoton() {
             const x = Math.random() * (window.innerWidth - btnNo.offsetWidth);
             const y = Math.random() * (window.innerHeight - btnNo.offsetHeight);
@@ -43,7 +38,6 @@
             btnNo.style.left = x + 'px';
             btnNo.style.top = y + 'px';
         }
-
         btnNo.addEventListener('mouseover', moverBoton);
         btnNo.addEventListener('touchstart', (e) => { e.preventDefault(); moverBoton(); });
     </script>
