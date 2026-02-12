@@ -13,7 +13,7 @@
         #pantalla-pregunta { display: block; }
         #fotos-recuerdo { display: none; width: 100%; }
 
-        /* Grid de 8 fotos ajustado */
+        /* Cuadrícula de 8 fotos */
         .grid-fotos { 
             display: grid; 
             grid-template-columns: repeat(2, 1fr); 
@@ -54,8 +54,7 @@
             <h1>¡Siiiii! ❤️</h1>
             <div class="grid-fotos">
                 <img src="https://i.postimg.cc/F7jzqJ60/Whats-App-Image-2026-02-12-at-11-15-43-AM.jpg">
-                <img src="https://i.postimg.cc/fjxyF0Px/Whats-App-Image-2026-02-12-at-11-15-44-AM.jpg">
-                <img src="https://i.postimg.cc/svpx8ZLY/Whats-App-Image-2026-02-12-at-11-15-44-AM-1.jpg">
+                <img src="https://i.postimg.cc/fJxyF0Px/Whats-App-Image-2026-02-12-at-11-15-44-AM.jpg"> <img src="https://i.postimg.cc/svpx8ZLY/Whats-App-Image-2026-02-12-at-11-15-44-AM-1.jpg">
                 <img src="https://i.postimg.cc/HVGjBt67/Whats-App-Image-2026-02-12-at-11-15-44-AM-2.jpg">
                 <img src="https://i.postimg.cc/crq6XcFY/Whats-App-Image-2026-02-12-at-11-17-22-AM.jpg">
                 <img src="https://i.postimg.cc/tY072zBn/Whats-App-Image-2026-02-12-at-11-17-22-AM-1.jpg">
@@ -72,16 +71,20 @@
         const p1 = document.getElementById('pantalla-pregunta');
         const p2 = document.getElementById('fotos-recuerdo');
 
+        // Acción al presionar SÍ
         btnSi.addEventListener('click', () => {
             p1.style.display = 'none';
             p2.style.display = 'block';
             
-            // Redirección a WhatsApp después de 8 segundos para que vea todas
+            // Redirección a WhatsApp después de 8 segundos
             setTimeout(() => {
-                window.location.href = "https://wa.me/525584414112?text=¡Siii!%20Acepto%20ser%20tu%20Valentín%20❤️";
+                const numero = "525584414112"; 
+                const mensaje = "¡Siiiii! ¡Claro que quiero ser tu Valentín! ❤️🌹";
+                window.location.href = `https://wa.me/${numero}?text=${encodeURIComponent(mensaje)}`;
             }, 8000);
         });
 
+        // Función para que el botón NO huya
         function huye() {
             const x = Math.random() * (window.innerWidth - btnNo.offsetWidth);
             const y = Math.random() * (window.innerHeight - btnNo.offsetHeight);
