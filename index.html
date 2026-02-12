@@ -17,11 +17,12 @@
         .presentacion {
             position: relative;
             width: 100%;
-            height: 400px; /* Altura para que las fotos se vean grandes */
+            height: 450px; /* Tamaño ideal para móvil */
             margin: 15px 0;
             overflow: hidden;
             border-radius: 15px;
             border: 3px solid #ff4d6d;
+            background: #f9f9f9;
         }
         .presentacion img {
             position: absolute;
@@ -31,17 +32,18 @@
             height: 100%;
             object-fit: cover;
             opacity: 0;
-            transition: opacity 1s ease-in-out;
+            transition: opacity 0.8s ease-in-out;
         }
         .presentacion img.activa {
             opacity: 1;
         }
         
-        h1 { color: #d63384; font-size: 22px; }
+        h1 { color: #d63384; font-size: 20px; margin: 10px 0; }
         .btns { margin-top: 20px; display: flex; justify-content: center; gap: 15px; min-height: 60px; position: relative; }
+        
         button { padding: 12px 25px; font-size: 18px; border: none; border-radius: 12px; cursor: pointer; font-weight: bold; }
-        #btn-si { background-color: #ff4d6d; color: white; }
-        #btn-no { background-color: #888; color: white; position: absolute; transition: 0.1s; z-index: 1000; }
+        #btn-si { background-color: #ff4d6d; color: white; z-index: 5; }
+        #btn-no { background-color: #888; color: white; position: absolute; transition: 0.1s; z-index: 10; }
         #gif-inicial { width: 120px; }
     </style>
 </head>
@@ -59,7 +61,7 @@
 
         <div id="fotos-recuerdo">
             <h1>¡Siiiii! ❤️</h1>
-            <div class="presentacion" id="carrusel">
+            <div class="presentacion">
                 <img src="https://i.postimg.cc/F7jzqJ60/Whats-App-Image-2026-02-12-at-11-15-43-AM.jpg" class="activa">
                 <img src="https://i.postimg.cc/fJxyF0Px/Whats-App-Image-2026-02-12-at-11-15-44-AM.jpg">
                 <img src="https://i.postimg.cc/svpx8ZLY/Whats-App-Image-2026-02-12-at-11-15-44-AM-1.jpg">
@@ -69,4 +71,52 @@
                 <img src="https://i.postimg.cc/LndhNVx1/Whats-App-Image-2026-02-12-at-11-17-22-AM-2.jpg">
                 <img src="https://i.postimg.cc/XpMXQgsj/Whats-App-Image-2026-02-12-at-11-17-22-AM-3.jpg">
             </div>
-            <p style="
+            <p id="texto-final" style="color: #ff4d6d; font-weight: bold; font-size: 14px;">Nuestros momentos... ✨</p>
+        </div>
+    </div>
+
+    <script>
+        const btnSi = document.getElementById('btn-si');
+        const btnNo = document.getElementById('btn-no');
+        const p1 = document.getElementById('pantalla-pregunta');
+        const p2 = document.getElementById('fotos-recuerdo');
+        const fotos = document.querySelectorAll('.presentacion img');
+
+        btnSi.addEventListener('click', () => {
+            p1.style.display = 'none';
+            p2.style.display = 'block';
+
+            let i = 0;
+            const intervalo = setInterval(() => {
+                fotos[i].classList.remove('activa');
+                i++;
+
+                if (i < fotos.length) {
+                    fotos[i].classList.add('activa');
+                } else {
+                    clearInterval(intervalo);
+                    // Cambiamos el texto antes de ir a WhatsApp
+                    document.getElementById('texto-final').innerText = "¡Te amo! Redirigiendo... ❤️";
+                    setTimeout(() => {
+                        window.location.href = "https://wa.me/525584414112?text=¡Siii!%20Acepto%20ser%20tu%20Valentín%20❤️";
+                    }, 1500);
+                }
+            }, 2500); // 2.5 segundos por foto para que le dé tiempo de verlas
+        });
+
+        // Lógica del botón que huye (mejorada para evitar bloqueos)
+        function huye() {
+            const x = Math.random() * (window.innerWidth - btnNo.offsetWidth);
+            const y = Math.random() * (window.innerHeight - btnNo.offsetHeight);
+            btnNo.style.left = x + 'px';
+            btnNo.style.top = y + 'px';
+        }
+
+        btnNo.addEventListener('mouseover', huye);
+        btnNo.addEventListener('touchstart', (e) => {
+            e.preventDefault();
+            huye();
+        });
+    </script>
+</body>
+</html>
